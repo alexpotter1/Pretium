@@ -1,3 +1,19 @@
-// Place all the styles related to the Welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Cantarell');
+
+$font-stack: Cantarell, sans-serif;
+$bg-color: #00AA8D;
+$accent-color: #00BF9A;
+$accent2-color: #008975;
+
+body {
+  font: 100% $font-stack;
+  background-color: $bg-color;
+}
+
+.title {
+  font-size: 250%;
+  text-align: center;
+  color: #FFFFFF;
+
+}
