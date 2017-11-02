@@ -5,8 +5,8 @@
 @import 'reset';
 
 $font-stack: Cantarell, sans-serif;
-$bg-color: #00AA8D;
-$accent-color: #00BF9A;
+$bg-color: #00bf9a;
+$accent-color: #00aa8d;
 $accent2-color: #008975;
 
 body {
@@ -19,4 +19,17 @@ body {
   text-align: center;
   color: #FFFFFF;
 
+}
+
+.logo {
+
+  display: block;
+  text-indent: -9999px;
+  padding: 0;
+  background: url('logo.svg') no-repeat;
+  background-size: 40% 40%;
+  padding-bottom: calc(100% * 3/4);
+  margin-left: 35vw;
+  margin-right: auto;
+  margin-top: -15vh;
 }

@@ -1,0 +1,161 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 7, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 28, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 32, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 35, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 38, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 41, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 46, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Cantarell");
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 6, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 27, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 31, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 34, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 37, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 40, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 45, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 12, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/welcome.scss */
+body {
+  font: 100% Cantarell, sans-serif;
+  background-color: #00aa8d;
+}
+
+/* line 17, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/welcome.scss */
+.title {
+  font-size: 250%;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/* line 24, /Users/alexpotter1/Documents/CS/COM2025/Pretium/app/assets/stylesheets/welcome.scss */
+.logo {
+  display: block;
+  text-indent: -9999px;
+  padding: 0;
+  background: url("logo.svg") no-repeat;
+  background-size: 50% 50%;
+  padding-bottom: calc(100% * 3/4);
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
