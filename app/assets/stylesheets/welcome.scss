@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Cantarell');
 
+// Use Eric Meyer's Reset CSS to normalise rendering differences between browsers.
+@import 'reset';
+
 $font-stack: Cantarell, sans-serif;
 $bg-color: #00AA8D;
 $accent-color: #00BF9A;
