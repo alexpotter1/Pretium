@@ -12,6 +12,7 @@ $accent2-color: #008975;
 body {
   font: 100% $font-stack;
   background-color: $bg-color !important;
+  overflow: hidden;
 }
 
 .title {
