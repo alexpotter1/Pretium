@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  get 'bitcoin/index'
 
   root 'welcome#index'
 
