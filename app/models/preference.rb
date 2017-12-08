@@ -1,4 +1,4 @@
-class BitcoinPreference < ApplicationRecord
+class Preference < ApplicationRecord
   validates :fiat_currency, presence: true
 
   private

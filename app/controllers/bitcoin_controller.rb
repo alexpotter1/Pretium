@@ -10,7 +10,7 @@ class BitcoinController < ApplicationController
     @prefs = nil
 
     if BitcoinPreference.where(id: 1).empty?
-      @prefs = BitcoinPreference.create(:fiat_currency => @default_fiat)
+      @prefs = Preference.create(:fiat_currency => @default_fiat)
       @prefs.save
     else
       self.obtainModelsFromDB
@@ -18,8 +18,7 @@ class BitcoinController < ApplicationController
   end
 
   def obtainModelsFromDB
-    @prefs = BitcoinPreference.first
-    @prices = BitcoinPrice.all
+    @prefs = Preference.first
   end
 
   def index
