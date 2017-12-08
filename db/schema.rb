@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208214303) do
+ActiveRecord::Schema.define(version: 20171208221928) do
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171208214303) do
     t.string "fiat_currency"
   end
 
-  create_table "price", force: :cascade do |t|
+  create_table "prices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

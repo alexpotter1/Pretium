@@ -9,7 +9,7 @@ class BitcoinController < ApplicationController
     @crypto = 'BTC'
     @prefs = nil
 
-    if BitcoinPreference.where(id: 1).empty?
+    if Preference.where(id: 1).empty?
       @prefs = Preference.create(:fiat_currency => @default_fiat)
       @prefs.save
     else
