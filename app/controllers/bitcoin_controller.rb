@@ -4,6 +4,7 @@ class BitcoinController < ApplicationController
 
   def initialize
     # Create default BitcoinPreference model (if not exists), save defaults
+    super
     @default_fiat = 'GBP'
     @crypto = 'BTC'
     @prefs = nil
@@ -13,6 +14,7 @@ class BitcoinController < ApplicationController
       @prefs.save
     else
       self.obtainModelFromDB
+    end
   end
 
   def obtainModelFromDB
