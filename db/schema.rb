@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208203915) do
+ActiveRecord::Schema.define(version: 20171208214303) do
 
-  create_table "bitcoin_preferences", force: :cascade do |t|
+  create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "fiat_currency"
   end
 
-  create_table "bitcoin_prices", force: :cascade do |t|
+  create_table "price", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
