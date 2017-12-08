@@ -13,12 +13,13 @@ class BitcoinController < ApplicationController
       @prefs = BitcoinPreference.create(:fiat_currency => @default_fiat)
       @prefs.save
     else
-      self.obtainModelFromDB
+      self.obtainModelsFromDB
     end
   end
 
-  def obtainModelFromDB
+  def obtainModelsFromDB
     @prefs = BitcoinPreference.first
+    @prices = BitcoinPrice.all
   end
 
   def index
