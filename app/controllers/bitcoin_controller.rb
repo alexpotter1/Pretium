@@ -2,9 +2,12 @@ require 'cryptocompare'
 
 class BitcoinController < ApplicationController
 
+  def initialize
+
+  end
+
   def index
-    cryptoPriceObject = Cryptocompare::Price.find('BTC', 'GBP')
-    @price = cryptoPriceObject['BTC']['GBP']
+    
   end
 
 end
