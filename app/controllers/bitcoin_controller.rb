@@ -1,0 +1,2 @@
+class BitcoinController < ApplicationController
+end
