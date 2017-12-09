@@ -41,8 +41,7 @@ class BitcoinController < ApplicationController
         puts 'attempted to create price'
         puts @currency.prices.first
       end
-      @currency.prices.save!
-      @currency.save!
+      @currency.save
     end
   end
 
