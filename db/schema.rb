@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209165136) do
+ActiveRecord::Schema.define(version: 20171209192459) do
 
   create_table "currencies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20171209165136) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "crypto_id"
+    t.string "price"
+    t.string "time"
     t.index ["crypto_id"], name: "index_prices_on_crypto_id"
   end
 
