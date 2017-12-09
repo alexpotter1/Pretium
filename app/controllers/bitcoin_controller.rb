@@ -10,16 +10,17 @@ class BitcoinController < ApplicationController
     @currency = nil
 
     if Preference.where(id: 1).empty?
-      @prefs = Preference.create(:fiat_currency => @default_fiat)
-      @prefs.save
+      @prefs = Preference.create(:fiat_currency => @default_fiat, :time_interval => "1h")
+      @prefs.save!
     else
       self.obtainPrefModelFromDB
     end
 
     if Currency.where(currency_type: 'BTC').empty?
       @currency = Currency.create(:currency_type => 'BTC')
-      @currency.save
+      @currency.save!
     else
+      puts 'currency object exists'
       self.obtainCurrencyModelFromDB
     end
 
@@ -29,16 +30,17 @@ class BitcoinController < ApplicationController
 
   def processCryptoPriceObject(crypto_price_object, currency_object)
     # only save if response is HTTP OK (200)
-    if crypto_price_object.response == "Success"
-      crypto_price_object.data.each do | price |
+    if crypto_price_object['response'] == "Success"
+      crypto_price_object['data'].each do | price |
         # only take the closing price for each time interval, for now
-        price_value = price.close
+        price_value = price['close']
 
         # time is a Unix timestamp
-        price_time = price.time
+        price_time = price['time']
         @currency.prices.create(:price => price_value, :time => price_time)
       end
-      @currency.prices.save
+      @currency.prices.save!
+      @currency.save!
     end
   end
 
@@ -49,13 +51,13 @@ class BitcoinController < ApplicationController
     unless @prefs.nil?
       tinterval = @prefs.time_interval
       if tinterval == "1m"
-        @crypto_prices = Cryptocompare::HistoMinute(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1h"
-        @crypto_prices = CryptoCompare::HistoHour(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoHour.find(@currency.currency_type, @default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1d"
-        @crypto_prices = Cryptocompare::HistoDay(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoDay.find(@currency.currency_type, @default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       end
     end
@@ -66,7 +68,7 @@ class BitcoinController < ApplicationController
   end
 
   def obtainCurrencyModelFromDB
-    @currency = Currency.where(currency_type: 'BTC')
+    @currency = Currency.where(currency_type: 'BTC').first
   end
 
   def index

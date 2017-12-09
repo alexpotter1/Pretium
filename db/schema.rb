@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209163937) do
+ActiveRecord::Schema.define(version: 20171209165136) do
 
   create_table "currencies", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "currency_type"
   end
 
   create_table "preferences", force: :cascade do |t|
