@@ -6,9 +6,8 @@ class BitcoinController < ApplicationController
     # Create default BitcoinPreference model (if not exists), save defaults
     super
     @default_fiat = 'GBP'
-    @crypto = 'BTC'
     @prefs = nil
-    @btc = nil
+    @currency = nil
 
     if Preference.where(id: 1).empty?
       @prefs = Preference.create(:fiat_currency => @default_fiat)
@@ -17,22 +16,57 @@ class BitcoinController < ApplicationController
       self.obtainPrefModelFromDB
     end
 
-    if Bitcoin.where(id: 1).empty?
-      @btc = Bitcoin.create
-      @btc.save
+    if Currency.where(currency_type: 'BTC').empty?
+      @currency = Currency.create(:currency_type => 'BTC')
+      @currency.save
     else
+      self.obtainCurrencyModelFromDB
+    end
+
+    # save prices into the model
+    self.updateBtcPrices
   end
 
+  def processCryptoPriceObject(crypto_price_object, currency_object)
+    # only save if response is HTTP OK (200)
+    if crypto_price_object.response == "Success"
+      crypto_price_object.data.each do | price |
+        # only take the closing price for each time interval, for now
+        price_value = price.close
+
+        # time is a Unix timestamp
+        price_time = price.time
+        @currency.prices.create(:price => price_value, :time => price_time)
+      end
+      @currency.prices.save
+    end
+  end
+
+
   def updateBtcPrices
-    
+    # Obtain the time interval from Preference
+    @crypto_prices = nil
+    unless @prefs.nil?
+      tinterval = @prefs.time_interval
+      if tinterval == "1m"
+        @crypto_prices = Cryptocompare::HistoMinute(@currency.currency_type, @default_fiat)
+        self.processCryptoPriceObject(@crypto_prices, @currency)
+      elsif tinterval == "1h"
+        @crypto_prices = CryptoCompare::HistoHour(@currency.currency_type, @default_fiat)
+        self.processCryptoPriceObject(@crypto_prices, @currency)
+      elsif tinterval == "1d"
+        @crypto_prices = Cryptocompare::HistoDay(@currency.currency_type, @default_fiat)
+        self.processCryptoPriceObject(@crypto_prices, @currency)
+      end
+    end
   end
 
   def obtainPrefModelFromDB
     @prefs = Preference.first
   end
 
-  def obtainBtcModelFromDB
-    @btc = Bitcoin.first
+  def obtainCurrencyModelFromDB
+    @currency = Currency.where(currency_type: 'BTC')
   end
 
   def index
