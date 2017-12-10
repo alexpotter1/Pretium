@@ -26,7 +26,7 @@ class PreferencesController < ApplicationController
     @prefs = Preference.first
   end
 
-  # Preference model object needs to be accessible to the btc/eth view so it can get currency types
+  # Preference model object needs to be accessible to the btc/eth view so it can get settings
   attr_reader :prefs
 
 end
