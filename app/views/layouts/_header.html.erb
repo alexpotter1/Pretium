@@ -1,3 +1,7 @@
-<div class="page-header">
+<div class="navbar navbar-fixed-top navbar-custom" style="width: 100%">
   <%= image_tag('logo.svg', :style => 'width: 50%; height: auto; margin-left: -17vw; margin-top: -5vh;') %>
+
+  <%= link_to(bitcoin_index_path) do %>
+    <%= content_tag(:button, '<b>Bitcoin</b>'.html_safe, :class => 'btn btn-outline-dark btn-md', :style => 'color: #008975 !important; border-color: #008975 !important; margin-top: -5vh;') %>
+  <% end %>
 </div>

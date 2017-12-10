@@ -8,3 +8,7 @@
 <div class="graph-container" style="position: relative; height:40vh; width: 60vw;">
   <canvas id="graph"></canvas>
 </div>
+
+<!-- Make Currency model available to JavaScript for plotting graphs -->
+<%= content_tag :div, class: 'ruby_data', data: {bitcoin: @currency} do %>
+<% end %> 
