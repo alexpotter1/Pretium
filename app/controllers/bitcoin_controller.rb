@@ -1,4 +1,5 @@
 require 'cryptocompare'
+require 'date'
 
 class BitcoinController < ApplicationController
 
@@ -35,8 +36,8 @@ class BitcoinController < ApplicationController
         # only take the closing price for each time interval, for now
         price_value = price['close']
 
-        # time is a Unix timestamp
-        price_time = price['time']
+        # time is a Unix timestamp, so convert
+        price_time = Time.at(price['time']).to_datetime 
         @currency.prices.create(:price => price_value, :time => price_time)
         puts 'attempted to create price'
         puts @currency.prices.first

@@ -14,3 +14,10 @@
  *= require_self
  */
 @import 'bootstrap';
+
+.btn-navbar-custom {
+  color: #008975 !important;
+  border-color: #008975 !important;
+  margin-top: -5vh;
+  margin-right: 10px;
+}

@@ -3,10 +3,10 @@
 
   <div class="col-xs-4">
     <%= link_to(bitcoin_index_path) do %>
-      <%= content_tag(:button, '<b>Bitcoin</b>'.html_safe, :class => 'btn btn-outline-dark btn-md', :style => 'color: #008975 !important; border-color: #008975 !important; margin-top: -5vh; margin-right: 10px;') %>
+      <%= content_tag(:button, '<b>Bitcoin</b>'.html_safe, :class => 'btn btn-outline-dark btn-md btn-navbar-custom') %>
     <% end %>
 
-    <button type="button" class="btn btn-outline-dark btn-md" style="color: #008975 !important; border-color: #008975 !important; margin-top: -5vh;" data-toggle="modal" data-target="#settings-modal"><b>OPTIONS</b></button>
+    <button type="button" class="btn btn-outline-dark btn-md btn-navbar-custom" data-toggle="modal" data-target="#settings-modal"><b>OPTIONS</b></button>
   </div>
 
   <div id="settings-modal" class="modal fade" role="dialog">
