@@ -1,8 +1,8 @@
 <%= render 'layouts/header', :prefs => @prefs %>
 
 <div class="text-center">
-  <h1 style="font-size: 80px; color: #008975;">BTC - <%= @prefs.fiat_currency %></h1>
-  <h3>Latest price (<%= @prefs.time_interval %>): £<%= @currency.prices.last.price %></h3>
+  <h1 style="font-size: 80px; color: #008975;">BTC - <%= @prefs_controller.prefs.fiat_currency %></h1>
+  <h3>Latest price (<%= @prefs_controller.prefs.time_interval %>): £<%= @currency.prices.last.price %></h3>
 </div>
 
 <%= line_chart @currency.prices.group_by_hour(:time).maximum(:price) %>

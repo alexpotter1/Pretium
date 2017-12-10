@@ -7,15 +7,8 @@ class BitcoinController < ApplicationController
     # Create default BitcoinPreference model (if not exists), save defaults
     super
     @default_fiat = 'GBP'
-    @prefs = nil
     @currency = nil
-
-    if Preference.where(id: 1).empty?
-      @prefs = Preference.create(:fiat_currency => @default_fiat, :time_interval => "1h")
-      @prefs.save!
-    else
-      self.obtainPrefModelFromDB
-    end
+    @prefs_controller = PreferencesController.new
 
     if Currency.where(currency_type: 'BTC').empty?
       @currency = Currency.create(:currency_type => 'BTC')
@@ -37,7 +30,7 @@ class BitcoinController < ApplicationController
         price_value = price['close']
 
         # time is a Unix timestamp, so convert
-        price_time = Time.at(price['time']).to_datetime 
+        price_time = Time.at(price['time']).to_datetime
         @currency.prices.create(:price => price_value, :time => price_time)
         puts 'attempted to create price'
         puts @currency.prices.first
@@ -65,10 +58,6 @@ class BitcoinController < ApplicationController
         self.processCryptoPriceObject(@crypto_prices, @currency)
       end
     end
-  end
-
-  def obtainPrefModelFromDB
-    @prefs = Preference.first
   end
 
   def obtainCurrencyModelFromDB
