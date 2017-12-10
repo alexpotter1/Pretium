@@ -18,11 +18,10 @@
         </div>
 
         <div class="modal-body">
-          <p>Sample Text</p>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+          <%= simple_form_for(@prefs, html: { class: 'form-inline' }) do |form| %>
+            <%= form.input :time_interval, collection: ["1m", "1h", "1d"] %>
+            <%= form.button :submit %>
+          <% end %>
         </div>
       </div>
     </div>
