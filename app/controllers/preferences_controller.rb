@@ -18,8 +18,9 @@ class PreferencesController < ApplicationController
     end
   end
 
+  # No template is rendered by this action.
   def update
-
+    
   end
 
   def obtainPrefModelFromDB
