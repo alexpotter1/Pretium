@@ -27,6 +27,6 @@ class PreferencesController < ApplicationController
   end
 
   # Preference model object needs to be accessible to the btc/eth view so it can get settings
-  attr_reader :prefs
+  attr_reader :prefs, :default_fiat
 
 end

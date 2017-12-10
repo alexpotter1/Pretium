@@ -4,7 +4,7 @@ class BitcoinController < ApplicationController
     super
     @default_fiat = 'GBP'
     @prefs_controller = PreferencesController.new
-    @currency_controller = CurrencyController.new(currency_type: 'BTC', @prefs_controller)
+    @currency_controller = CurrencyController.new(currency_type: 'BTC', pref_controller: @prefs_controller)
   end
 
   def index

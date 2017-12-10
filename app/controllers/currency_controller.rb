@@ -3,14 +3,14 @@ require 'date'
 
 class CurrencyController < ApplicationController
 
-  def initialize(ctype, prefcontroller)
-    super
-
+  def initialize(options = {})
     @currency = nil
-    @prefs_controller = prefcontroller
+    @prefs_controller = options[:pref_controller] || PreferencesController.new
+    @ctype = options[:currency_type] || 'BTC'
 
-    if Currency.where(currency_type: ctype).empty?
-      @currency = Currency.create(:currency_type => ctype)
+
+    if Currency.where(currency_type: @ctype).empty?
+      @currency = Currency.create(:currency_type => @ctype)
       @currency.save!
     else
       puts 'currency object exists'
@@ -24,6 +24,7 @@ class CurrencyController < ApplicationController
 
   def processCryptoPriceObject(crypto_price_object, currency_object)
     # only save if response is HTTP OK (200)
+    puts crypto_price_object
     if crypto_price_object['Response'] == "Success"
       crypto_price_object['Data'].each do | price |
         # only take the closing price for each time interval, for now
@@ -36,6 +37,8 @@ class CurrencyController < ApplicationController
         puts @currency.prices.first
       end
       @currency.save
+    else
+      puts 'error retrieving data from cryptocompare'
     end
   end
 
@@ -45,23 +48,23 @@ class CurrencyController < ApplicationController
     @crypto_prices = nil
     puts 'updating prices now'
     unless @prefs_controller.prefs.nil?
-      titerval = @prefs_controller.prefs.time_interval
+      tinterval = @prefs_controller.prefs.time_interval
       if tinterval == "1m"
-        @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @prefs_controller.default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1h"
-        @crypto_prices = Cryptocompare::HistoHour.find(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoHour.find(@currency.currency_type, @prefs_controller.default_fiat)
         puts 'calling pcpo'
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1d"
-        @crypto_prices = Cryptocompare::HistoDay.find(@currency.currency_type, @default_fiat)
+        @crypto_prices = Cryptocompare::HistoDay.find(@currency.currency_type, @prefs_controller.default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       end
     end
   end
 
   def obtainCurrencyModelFromDB
-    @currency = Currency.where(currency_type: 'ETH').first
+    @currency = Currency.where(currency_type: @ctype).first
   end
 
   # Allow currency object to be obtained by other views and controllers
