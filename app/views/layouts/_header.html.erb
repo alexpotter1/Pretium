@@ -6,6 +6,10 @@
       <%= content_tag(:button, '<b>Bitcoin</b>'.html_safe, :class => 'btn btn-outline-dark btn-md btn-navbar-custom') %>
     <% end %>
 
+    <%= link_to(ethereum_index_path) do %>
+      <%= content_tag(:button, '<b>Ethereum</b>'.html_safe, :class => 'btn btn-outline-dark btn-md btn-navbar-custom') %>
+    <% end %>
+
     <button type="button" class="btn btn-outline-dark btn-md btn-navbar-custom" data-toggle="modal" data-target="#settings-modal"><b>OPTIONS</b></button>
   </div>
 
