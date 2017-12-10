@@ -44,8 +44,8 @@ class BitcoinController < ApplicationController
     # Obtain the time interval from Preference
     @crypto_prices = nil
     puts 'updating prices now'
-    unless @prefs.nil?
-      tinterval = @prefs.time_interval
+    unless @prefs_controller.prefs.nil?
+      tinterval = @prefs_controller.prefs.time_interval
       if tinterval == "1m"
         @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @default_fiat)
         self.processCryptoPriceObject(@crypto_prices, @currency)
