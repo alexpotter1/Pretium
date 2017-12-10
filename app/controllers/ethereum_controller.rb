@@ -1,7 +1,4 @@
-require 'cryptocompare'
-require 'date'
-
-class BitcoinController < ApplicationController
+class EthereumController < ApplicationController
 
   def initialize
     # Create default BitcoinPreference model (if not exists), save defaults
@@ -10,8 +7,8 @@ class BitcoinController < ApplicationController
     @currency = nil
     @prefs_controller = PreferencesController.new
 
-    if Currency.where(currency_type: 'BTC').empty?
-      @currency = Currency.create(:currency_type => 'BTC')
+    if Currency.where(currency_type: 'ETH').empty?
+      @currency = Currency.create(:currency_type => 'ETH')
       @currency.save!
     else
       puts 'currency object exists'
@@ -19,7 +16,7 @@ class BitcoinController < ApplicationController
     end
 
     # save prices into the model
-    self.updateBtcPrices
+    self.updateEthPrices
   end
 
   def processCryptoPriceObject(crypto_price_object, currency_object)
@@ -40,7 +37,7 @@ class BitcoinController < ApplicationController
   end
 
 
-  def updateBtcPrices
+  def updateEthPrices
     # Obtain the time interval from Preference
     @crypto_prices = nil
     puts 'updating prices now'
@@ -61,7 +58,7 @@ class BitcoinController < ApplicationController
   end
 
   def obtainCurrencyModelFromDB
-    @currency = Currency.where(currency_type: 'BTC').first
+    @currency = Currency.where(currency_type: 'ETH').first
   end
 
   def index
