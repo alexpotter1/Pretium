@@ -2,7 +2,7 @@
 
 <div class="text-center">
   <h1 style="font-size: 80px; color: #008975;">BTC - <%= @prefs_controller.prefs.fiat_currency %></h1>
-  <h3 style="margin-bottom: 7vh;">Latest price (<%= @prefs_controller.prefs.time_interval %>): £<%= @currency.prices.last.price %></h3>
+  <h3 style="margin-bottom: 7vh;">Latest price (<%= @prefs_controller.prefs.time_interval %>): £<%= @currency_controller.currency.prices.last.price %></h3>
 </div>
 
-<%= line_chart @currency.prices.group_by_hour(:time).maximum(:price) %>
+<%= line_chart @currency_controller.currency.prices.group_by_hour(:time).maximum(:price) %>
