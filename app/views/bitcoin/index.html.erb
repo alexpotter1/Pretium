@@ -5,4 +5,11 @@
   <h3 style="margin-bottom: 7vh;">Latest price (<%= @prefs_controller.prefs.time_interval %>): <%= @currency_controller.currency.prices.last.price %> <%=@prefs_controller.prefs.fiat_currency %></h3>
 </div>
 
-<%= line_chart @currency_controller.currency.prices.group_by_hour(:time).maximum(:price) %>
+
+<% if @prefs_controller.prefs.time_interval == "1m" %>
+  <%= line_chart @currency_controller.currency.prices.group_by_minute(:time).maximum(:price) %>
+<% elsif @prefs_controller.prefs.time_interval == "1h" %>
+  <%= line_chart @currency_controller.currency.prices.group_by_hour(:time).maximum(:price) %>
+<% else %>
+  <%= line_chart @currency_controller.currency.prices.group_by_day(:time).maximum(:price) %>
+<% end %>
