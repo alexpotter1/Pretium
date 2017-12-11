@@ -1,8 +1,10 @@
 class ContactMailer < ApplicationMailer
 
-  def send_contact_email(contact_inquiry)
-    @contact_inquiry = contact_inquiry
-    mail(to: @contact_inquiry.email, subject: "Pretium: Thanks for getting in touch")
+  def send_contact_email(name, email, message)
+    @name = name
+    @email = email
+    @message = message
+    mail(from: @email, subject: "Contact Request")
   end
 
 end

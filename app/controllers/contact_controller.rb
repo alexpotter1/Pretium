@@ -4,7 +4,13 @@ class ContactController < ApplicationController
   end
 
   def submit
-    puts 'submitted'
+    name = params[:name]
+    email = params[:email]
+    comment = params[:message]
+
+    # Pass obtained parameters straight to the mailer
+    ContactMailer.send_contact_email(name, email, comment).deliver
+    redirect_to contact_index_path, notice: 'Message sent'
   end
 
 end

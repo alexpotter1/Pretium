@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for getting in touch, <%= @user.name %>!</h1>
-    <p>We'll aim to respond to your query as soon as we can!</p>
+    <p>You have received an email from <%= "#{ @name } (#{ @email })"%></p>
+    <p><%= @comment %></p>
   </body>
 </html>
