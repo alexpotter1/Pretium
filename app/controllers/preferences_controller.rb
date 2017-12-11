@@ -21,6 +21,8 @@ class PreferencesController < ApplicationController
   # No template is rendered by this action.
   def update
     @prefs.update(prefs_params)
+    ActiveRecord::Base.connection.execute("DELETE FROM currencies WHERE 1")
+    ActiveRecord::Base.connection.execute("DELETE FROM prices WHERE 1")
     if @prefs.save!
       redirect_to bitcoin_index_path, notice: 'Preferences successfully saved'
     else
@@ -35,6 +37,7 @@ class PreferencesController < ApplicationController
   # Preference model object needs to be accessible to the btc/eth view so it can get settings
   attr_reader :prefs, :default_fiat
 
+  # Strong parameters, used for update
   private
   def prefs_params
     params.require(:prefs).permit(:time_interval, :fiat_currency)

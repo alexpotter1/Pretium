@@ -10,6 +10,7 @@ class CurrencyController < ApplicationController
 
 
     if Currency.where(currency_type: @ctype).empty?
+      puts 'new currency object'
       @currency = Currency.create(:currency_type => @ctype)
       @currency.save!
     else
@@ -43,6 +44,8 @@ class CurrencyController < ApplicationController
   end
 
 
+
+
   def updatePrices
     # Obtain the time interval from Preference
     @crypto_prices = nil
@@ -50,14 +53,14 @@ class CurrencyController < ApplicationController
     unless @prefs_controller.prefs.nil?
       tinterval = @prefs_controller.prefs.time_interval
       if tinterval == "1m"
-        @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @prefs_controller.default_fiat)
+        @crypto_prices = Cryptocompare::HistoMinute.find(@currency.currency_type, @prefs_controller.prefs.fiat_currency)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1h"
-        @crypto_prices = Cryptocompare::HistoHour.find(@currency.currency_type, @prefs_controller.default_fiat)
+        @crypto_prices = Cryptocompare::HistoHour.find(@currency.currency_type, @prefs_controller.prefs.fiat_currency)
         puts 'calling pcpo'
         self.processCryptoPriceObject(@crypto_prices, @currency)
       elsif tinterval == "1d"
-        @crypto_prices = Cryptocompare::HistoDay.find(@currency.currency_type, @prefs_controller.default_fiat)
+        @crypto_prices = Cryptocompare::HistoDay.find(@currency.currency_type, @prefs_controller.prefs.fiat_currency)
         self.processCryptoPriceObject(@crypto_prices, @currency)
       end
     end
