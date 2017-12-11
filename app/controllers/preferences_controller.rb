@@ -21,7 +21,11 @@ class PreferencesController < ApplicationController
   # No template is rendered by this action.
   def update
     @prefs.update(prefs_params)
-    @prefs.save!
+    if @prefs.save!
+      redirect_to bitcoin_index_path, notice: 'Preferences successfully saved'
+    else
+      redirect_to bitcoin_index_path, notice: 'Preferences not saved'
+    end
   end
 
   def obtainPrefModelFromDB
