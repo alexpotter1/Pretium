@@ -12,3 +12,5 @@
 <% else %>
   <%= line_chart @currency_controller.currency.prices.group_by_day(:time).maximum(:price) %>
 <% end %>
+
+<%= render 'layouts/footer' %>

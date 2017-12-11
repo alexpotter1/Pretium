@@ -24,7 +24,7 @@
         <div class="modal-body">
           <%= simple_form_for(:prefs, :url => preferences_update_path, html: { :method => :put, class: 'form-inline' }) do |form| %>
             <%= form.input :time_interval, collection: ["1m", "1h", "1d"] %>
-            <%= form.input :fiat_currency %>
+            <%= form.input :fiat_currency, collection: ["USD", "EUR", "GBP", "CAD"] %>
             <%= form.button :submit %>
           <% end %>
         </div>
