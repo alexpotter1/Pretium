@@ -3,8 +3,8 @@ class ContactController < ApplicationController
   def index
   end
 
-  def send
+  def submit
+    puts 'submitted'
   end
 
-  
 end

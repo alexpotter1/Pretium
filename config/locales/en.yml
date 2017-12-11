@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  name: "Enter a name"
+  email: "Enter an email"
+  telephone: "Enter a telephone number"
+  message: "Enter a message"
+  submit: "Submit"
