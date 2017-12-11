@@ -48,7 +48,6 @@ class CurrencyController < ApplicationController
         price_time = Time.at(price['time']).to_datetime
         @currency.prices.create(:price => price_value, :time => price_time)
         puts 'attempted to create price'
-        puts @currency.prices.first
 
         counter += 1
       end
