@@ -10,7 +10,7 @@ class ContactController < ApplicationController
 
     # Pass obtained parameters straight to the mailer
     ContactMailer.send_contact_email(name, email, comment).deliver
-    redirect_to contact_index_path, notice: 'Message sent'
+    redirect_to bitcoin_index_path, notice: "Successfully sent contact message"
   end
 
 end
