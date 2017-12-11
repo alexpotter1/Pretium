@@ -4,7 +4,7 @@ class ContactMailer < ApplicationMailer
     @name = name
     @email = email
     @message = message
-    mail(from: @email, subject: "Contact Request")
+    mail(from: @email, to: 'pretium-test@test.com', subject: "Contact Request", body: @message)
   end
 
 end
