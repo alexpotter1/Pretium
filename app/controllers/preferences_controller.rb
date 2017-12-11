@@ -20,7 +20,8 @@ class PreferencesController < ApplicationController
 
   # No template is rendered by this action.
   def update
-    
+    @prefs.update(prefs_params)
+    @prefs.save!
   end
 
   def obtainPrefModelFromDB
@@ -29,5 +30,10 @@ class PreferencesController < ApplicationController
 
   # Preference model object needs to be accessible to the btc/eth view so it can get settings
   attr_reader :prefs, :default_fiat
+
+  private
+  def prefs_params
+    params.require(:prefs).permit(:time_interval, :fiat_currency)
+  end
 
 end
