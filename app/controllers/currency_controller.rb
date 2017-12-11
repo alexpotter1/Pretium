@@ -26,8 +26,21 @@ class CurrencyController < ApplicationController
   def processCryptoPriceObject(crypto_price_object, currency_object)
     # only save if response is HTTP OK (200)
     puts crypto_price_object
+
+    # Only get first 3h of minute-by-minute values to improve loading performance
+    if @prefs_controller.prefs.time_interval == "1m"
+      restricted = 1
+    end
+
     if crypto_price_object['Response'] == "Success"
+      counter = 0
       crypto_price_object['Data'].each do | price |
+
+        # stop after certain time if restricted = True
+        if restricted == 1 && counter == 180
+          break
+        end
+
         # only take the closing price for each time interval, for now
         price_value = price['close']
 
@@ -36,6 +49,8 @@ class CurrencyController < ApplicationController
         @currency.prices.create(:price => price_value, :time => price_time)
         puts 'attempted to create price'
         puts @currency.prices.first
+
+        counter += 1
       end
       @currency.save
     else
