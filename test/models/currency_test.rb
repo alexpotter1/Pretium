@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BitcoinPriceTest < ActiveSupport::TestCase
+class CurrencyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
